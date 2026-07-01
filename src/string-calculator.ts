@@ -5,8 +5,9 @@ export class StringCalculator {
 
         if ( isNumbersEmpty ) { return 0; }
 
-        if (numbers.includes(",")) {
-            return this.convertStringToNumber(numbers.split(",")[1])
+        if (this.doesNumbersIncludeComa(numbers)) {
+            const lastNumber = numbers.split(",")[1];
+            return this.convertStringToNumber(lastNumber);
         }
 
         return this.convertStringToNumber(numbers);
@@ -19,4 +20,8 @@ export class StringCalculator {
     private convertStringToNumber(stringNumber: string): number {
         return parseInt(stringNumber);
     }
+
+    private doesNumbersIncludeComa(numbers: string): boolean {
+        return numbers.includes(",");
+    } 
 }
