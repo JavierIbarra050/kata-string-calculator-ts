@@ -1,4 +1,8 @@
 export class StringCalculator {
+
+    private readonly IGNORE_NUMBERS_GREATER_THAN_THIS_NUMBER: number = 1000;
+
+    
     public add(numbers: string): number {
 
         if ( this.numbersIsEmpty(numbers) ) { return 0; }
@@ -68,7 +72,7 @@ export class StringCalculator {
                 }
 
                 const intNumber = this.convertStringToNumber(number);
-                if (intNumber < 1000) {
+                if (intNumber < this.IGNORE_NUMBERS_GREATER_THAN_THIS_NUMBER) {
                     result = result + intNumber;
                 }
             }
