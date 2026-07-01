@@ -5,10 +5,14 @@ export class StringCalculator {
 
         if( isNumbersEmpty ) { return 0; }
 
-        return parseInt(numbers);
+        return this.convertStringToNumber(numbers);
     }
 
     private isNumbersArgumentEmpty(numbers: string): boolean { 
         return !numbers;
+    }
+
+    private convertStringToNumber(stringNumber: string): number {
+        return parseInt(stringNumber);
     }
 }
