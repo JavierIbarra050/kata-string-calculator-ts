@@ -66,8 +66,11 @@ export class StringCalculator {
                 if (number.includes("-")) {
                     negativeNumbers.push(number);
                 }
-                
-                result = result + this.convertStringToNumber(number);
+
+                const intNumber = this.convertStringToNumber(number);
+                if (intNumber < 1000) {
+                    result = result + intNumber;
+                }
             }
         )
 
@@ -81,7 +84,7 @@ export class StringCalculator {
         }
     }
 
-    
+
 
     private areThereAnyNegativeNumbers(stringNegativeNumbersOnList: string[]): boolean {
         return stringNegativeNumbersOnList.length > 0;
