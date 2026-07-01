@@ -9,14 +9,6 @@ describe("StringCalculator", () => {
         expect(result).toBe(0);
     });
 
-    it("should return 5 when given a 5", () => {
-        const calculator = new StringCalculator();
-
-        const result = calculator.add("5");
-
-        expect(result).toBe(5);
-    });
-
     it("should return any number when given any number", () => {
         const calculator = new StringCalculator();
 
@@ -39,5 +31,13 @@ describe("StringCalculator", () => {
         const result = calculator.add("2,3,4");
 
         expect(result).toBe(9);
+    });
+
+    it("should return sum of numbers when given using a line jump instead of comma", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("2\n3");
+
+        expect(result).toBe(5);
     });
 });

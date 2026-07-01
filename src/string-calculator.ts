@@ -5,7 +5,7 @@ export class StringCalculator {
 
         if ( isNumbersEmpty ) { return 0; }
 
-        if (this.doesNumbersIncludeComa(numbers)) {
+        if (this.doesNumbersIncludeComma(numbers)) {
 
             const listOfNumbers = numbers.split(",");
 
@@ -23,7 +23,7 @@ export class StringCalculator {
         return parseInt(stringNumber);
     }
 
-    private doesNumbersIncludeComa(numbers: string): boolean {
+    private doesNumbersIncludeComma(numbers: string): boolean {
         return numbers.includes(",");
     } 
 
