@@ -78,17 +78,21 @@ export class StringCalculator {
 
     private makeSumOfStringNumbers(stringNumbersOnList: string[]): number {   
         let result: number = 0;
+        const negativeNumbers: string[] = [];
 
         stringNumbersOnList.forEach(
             (number: string) => {
                 if (number.includes("-")) {
-                    throw new Error("Negative numbers are not valid: " + number);
+                    negativeNumbers.push(number);
                 }
                 
                 result = result + this.convertStringToNumber(number);
             }
         )
 
+        if(negativeNumbers.length > 0) {
+            throw new Error("Negative numbers are not valid: " + negativeNumbers.join(","));
+        }
         return result;
     }
 }
