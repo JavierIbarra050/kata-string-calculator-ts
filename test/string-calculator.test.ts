@@ -16,4 +16,12 @@ describe("StringCalculator", () => {
 
         expect(result).toBe(5);
     });
+
+    it("should return any number when given any number", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("9");
+
+        expect(result).toBe(9);
+    });
 });
