@@ -6,8 +6,11 @@ export class StringCalculator {
         if ( isNumbersEmpty ) { return 0; }
 
         if (this.doesNumbersIncludeComa(numbers)) {
-            const lastNumber = numbers.split(",")[1];
-            return this.convertStringToNumber(lastNumber);
+
+            const listOfNumbers = numbers.split(",");
+
+            return this.convertStringToNumber(listOfNumbers[0])
+             + this.convertStringToNumber(listOfNumbers[1]);
         }
 
         return this.convertStringToNumber(numbers);
