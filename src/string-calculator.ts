@@ -9,8 +9,7 @@ export class StringCalculator {
 
             const listOfNumbers = numbers.split(",");
 
-            return this.convertStringToNumber(listOfNumbers[0])
-             + this.convertStringToNumber(listOfNumbers[1]);
+            return this.makeSumOfStringNumbers(listOfNumbers);
         }
 
         return this.convertStringToNumber(numbers);
@@ -27,4 +26,16 @@ export class StringCalculator {
     private doesNumbersIncludeComa(numbers: string): boolean {
         return numbers.includes(",");
     } 
+
+    private makeSumOfStringNumbers(stringNumbersOnList: string[]): number {
+        let result: number = 0;
+
+        stringNumbersOnList.forEach(
+            (number: string) => {
+                result = result + this.convertStringToNumber(number);
+            }
+        )
+
+        return result;
+    }
 }
