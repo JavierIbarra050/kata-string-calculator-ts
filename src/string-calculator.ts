@@ -9,7 +9,7 @@ export class StringCalculator {
 
             const listOfNumbers = numbers.split("\n");
 
-            return this.makeSumOfStringNumbers(listOfNumbers);
+            numbers = listOfNumbers.join(",");
         }
 
         if (this.doesNumbersIncludeComma(numbers)) {
