@@ -5,12 +5,14 @@ export class StringCalculator {
 
         if ( isNumbersEmpty ) { return 0; }
 
+
         if(this.doesNumbersIncludeLineJump(numbers)) {
 
             const listOfNumbers = numbers.split("\n");
 
             numbers = listOfNumbers.join(",");
         }
+
 
         if (this.doesNumbersIncludeComma(numbers)) {
 
@@ -21,6 +23,7 @@ export class StringCalculator {
 
         return this.convertStringToNumber(numbers);
     }
+    
 
     private isNumbersArgumentEmpty(numbers: string): boolean { 
         return !numbers;

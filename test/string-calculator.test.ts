@@ -48,4 +48,12 @@ describe("StringCalculator", () => {
 
         expect(result).toBe(12);
     });
+
+    it("should return las number if new delimeter is set", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("//;\n2;7");
+
+        expect(result).toBe(7);
+    })
 });
