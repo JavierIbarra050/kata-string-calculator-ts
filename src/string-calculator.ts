@@ -82,6 +82,10 @@ export class StringCalculator {
 
         stringNumbersOnList.forEach(
             (number: string) => {
+                if (number.includes("-")) {
+                    throw new Error("Negative numbers are not valid: " + number);
+                }
+                
                 result = result + this.convertStringToNumber(number);
             }
         )

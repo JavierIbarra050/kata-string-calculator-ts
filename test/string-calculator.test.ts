@@ -57,11 +57,11 @@ describe("StringCalculator", () => {
         expect(result).toBe(9);
     })
 
-    it("should return an exception if there is a negative number", () => {
+    it("should return an error if there is a negative number", () => {
         const calculator = new StringCalculator();
 
-        const result = calculator.add("2,-7");
-
-        expect(Error).toBe("Negative numbers are not valid: -7");
-    })
+        expect(() => {
+            calculator.add("2,-7");
+        }).toThrow("Negative numbers are not valid: -7");
+    });
 });
