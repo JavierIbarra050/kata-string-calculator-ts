@@ -3,7 +3,11 @@ export class StringCalculator {
 
         const isNumbersEmpty = this.isNumbersArgumentEmpty(numbers);
 
-        if( isNumbersEmpty ) { return 0; }
+        if ( isNumbersEmpty ) { return 0; }
+
+        if (numbers.includes(",")) {
+            return this.convertStringToNumber(numbers.split(",")[1])
+        }
 
         return this.convertStringToNumber(numbers);
     }
