@@ -24,4 +24,12 @@ describe("StringCalculator", () => {
 
         expect(result).toBe(9);
     });
+
+    it("should return last number when given two numbers", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("9,3");
+
+        expect(result).toBe(3);
+    });
 });
