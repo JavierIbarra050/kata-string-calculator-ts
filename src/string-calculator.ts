@@ -1,9 +1,14 @@
 export class StringCalculator {
     public add(numbers: string): number {
-        if(!numbers) {
-            return 0;
-        }
+
+        const isNumbersEmpty = this.isNumbersArgumentEmpty(numbers);
+
+        if( isNumbersEmpty ) { return 0; }
 
         return 5;
+    }
+
+    private isNumbersArgumentEmpty(numbers: string): boolean { 
+        return !numbers;
     }
 }
