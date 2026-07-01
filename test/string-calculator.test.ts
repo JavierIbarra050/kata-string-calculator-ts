@@ -32,4 +32,12 @@ describe("StringCalculator", () => {
 
         expect(result).toBe(5);
     });
+
+    it("should return sum of numbers when given any amount of numbers", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("2,3,4");
+
+        expect(result).toBe(9);
+    });
 });
