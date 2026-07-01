@@ -5,9 +5,11 @@ export class StringCalculator {
 
         if ( isNumbersEmpty ) { return 0; }
 
-        if(numbers.includes("\n")) {
-            return this.convertStringToNumber(numbers.split("\n")[0]) 
-                + this.convertStringToNumber(numbers.split("\n")[1]);
+        if(this.doesNumbersIncludeLineJump(numbers)) {
+
+            const listOfNumbers = numbers.split("\n");
+
+            return this.makeSumOfStringNumbers(listOfNumbers);
         }
 
         if (this.doesNumbersIncludeComma(numbers)) {
@@ -31,6 +33,10 @@ export class StringCalculator {
     private doesNumbersIncludeComma(numbers: string): boolean {
         return numbers.includes(",");
     } 
+
+    private doesNumbersIncludeLineJump(numbers: string): boolean {
+        return numbers.includes("\n");
+    }
 
     private makeSumOfStringNumbers(stringNumbersOnList: string[]): number {   
         let result: number = 0;

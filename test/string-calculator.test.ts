@@ -40,4 +40,12 @@ describe("StringCalculator", () => {
 
         expect(result).toBe(5);
     });
+
+    it("should return sum of numbers when given using a line jumps and commas", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("2\n3,7");
+
+        expect(result).toBe(12);
+    });
 });
