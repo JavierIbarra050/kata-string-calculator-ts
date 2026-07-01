@@ -6,7 +6,14 @@ export class StringCalculator {
         if ( isNumbersEmpty ) { return 0; }
 
 
-        if(this.doesNumbersIncludeLineJump(numbers)) {
+        if (numbers.includes("//")) {
+            const delimiter = numbers.replace("//", "").split("\n")[0];
+
+            return this.convertStringToNumber(numbers.split(delimiter)[2]);
+        }
+
+
+        if (this.doesNumbersIncludeLineJump(numbers)) {
 
             const listOfNumbers = numbers.split("\n");
 
@@ -23,7 +30,7 @@ export class StringCalculator {
 
         return this.convertStringToNumber(numbers);
     }
-    
+
 
     private isNumbersArgumentEmpty(numbers: string): boolean { 
         return !numbers;
