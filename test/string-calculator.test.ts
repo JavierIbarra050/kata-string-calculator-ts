@@ -49,11 +49,11 @@ describe("StringCalculator", () => {
         expect(result).toBe(12);
     });
 
-    it("should return las number if new delimeter is set", () => {
+    it("should return sum of numbers if new delimiter is set", () => {
         const calculator = new StringCalculator();
 
         const result = calculator.add("//;\n2;7");
 
-        expect(result).toBe(7);
+        expect(result).toBe(9);
     })
 });
