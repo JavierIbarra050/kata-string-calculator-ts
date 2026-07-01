@@ -10,8 +10,9 @@ export class StringCalculator {
             
             const delimiter = this.getUserDelimiter(numbers);
 
-            return this.convertStringToNumber(numbers.split(delimiter)[1])
-                + this.convertStringToNumber(numbers.split(delimiter)[2]);
+            const listOfNumbers = this.getListOfNumbersWithNewDelimiter(numbers, delimiter);
+
+            return this.makeSumOfStringNumbers(listOfNumbers);
         }
 
 
@@ -66,6 +67,14 @@ export class StringCalculator {
         const delimiter = listSeparatedByLineJump[0];
 
         return delimiter;
+    }
+
+    private getListOfNumbersWithNewDelimiter(numbers: string, delimiter: string): string[] {
+        numbers = this.deleteNewDelimiterMarkFromString(numbers);
+        numbers = numbers.replace(delimiter, "");
+        numbers = numbers.replace("\n", "");
+        
+        return numbers.split(delimiter);
     }
 
     private makeSumOfStringNumbers(stringNumbersOnList: string[]): number {   
