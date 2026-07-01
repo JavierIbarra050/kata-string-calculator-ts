@@ -28,14 +28,12 @@ export class StringCalculator {
     } 
 
     private makeSumOfStringNumbers(stringNumbersOnList: string[]): number {
-        let result: number = 0;
+        const firstNumber = stringNumbersOnList[0];
+        const secondNumber = stringNumbersOnList[1];
 
-        stringNumbersOnList.forEach(
-            (number: string) => {
-                result = result + this.convertStringToNumber(number);
-            }
-        )
+        const sumOfNumbers = 
+            this.convertStringToNumber(firstNumber) + this.convertStringToNumber(secondNumber);
 
-        return result;
+        return sumOfNumbers;
     }
 }
