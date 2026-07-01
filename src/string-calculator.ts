@@ -5,7 +5,7 @@ export class StringCalculator {
 
         if( isNumbersEmpty ) { return 0; }
 
-        return 5;
+        return parseInt(numbers);
     }
 
     private isNumbersArgumentEmpty(numbers: string): boolean { 
