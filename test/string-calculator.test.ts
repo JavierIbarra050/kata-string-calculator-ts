@@ -8,4 +8,12 @@ describe("StringCalculator", () => {
 
         expect(result).toBe(0);
     });
+
+    it("should return 5 when given a 5", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("5");
+
+        expect(result).toBe(5);
+    });
 });
