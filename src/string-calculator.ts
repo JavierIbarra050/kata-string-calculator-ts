@@ -5,58 +5,50 @@ export class StringCalculator {
 
         if ( isNumbersEmpty ) { return 0; }
 
+        numbers = this.turnDelimiterToCommas(numbers);
 
-        if (this.userIsSettingNewDelimiter(numbers)) {
-            
-            const delimiter = this.getUserDelimiter(numbers);
+        const result: number = this.makeSumOfStringWithCommaDelimiter(numbers);
 
-            const listOfNumbers = this.getListOfNumbersWithNewDelimiter(numbers, delimiter);
+        return result;
+    }
+    
 
-            return this.makeSumOfStringNumbers(listOfNumbers);
+
+    private getDelimiter(numbers: string): string {
+        if (this.isUserSettingNewDelimiter(numbers)) {
+            return this.getUserDelimiter(numbers);
         }
-
 
         if (this.doesNumbersIncludeLineJump(numbers)) {
+            return "\n";
+        }            
 
-            const listOfNumbers = numbers.split("\n");
+        return ",";
+    }
 
-            numbers = listOfNumbers.join(",");
+    private sanitizeNewDelimiterString(numbers: string): string {
+        if (!this.isUserSettingNewDelimiter(numbers)) {
+            return numbers;
         }
 
-
-        if (this.doesNumbersIncludeComma(numbers)) {
-
-            const listOfNumbers = numbers.split(",");
-
-            return this.makeSumOfStringNumbers(listOfNumbers);
-        }
-
-        return this.convertStringToNumber(numbers);
+        numbers = this.deleteNewDelimiterMarkFromString(numbers);
+        const listSeparatedByLineJump = numbers.split("\n");
+        
+        return listSeparatedByLineJump[1];
     }
 
+    private turnDelimiterToCommas (numbers: string): string {
+        const delimiter = this.getDelimiter(numbers);
+        
+        numbers = this.sanitizeNewDelimiterString(numbers);
 
-    private isNumbersArgumentEmpty(numbers: string): boolean { 
-        return !numbers;
+        return numbers.replaceAll(delimiter, ",");
     }
 
-    private convertStringToNumber(stringNumber: string): number {
-        return parseInt(stringNumber);
-    }
+    private makeSumOfStringWithCommaDelimiter(numbers: string): number {
+        const listOfNumbers = numbers.split(",");
 
-    private doesNumbersIncludeComma(numbers: string): boolean {
-        return numbers.includes(",");
-    } 
-
-    private doesNumbersIncludeLineJump(numbers: string): boolean {
-        return numbers.includes("\n");
-    }
-
-    private userIsSettingNewDelimiter(numbers: string): boolean {
-        return numbers.startsWith("//");
-    }
-
-    private deleteNewDelimiterMarkFromString(numbers: string): string {
-        return numbers.replace("//", "");
+        return this.makeSumOfStringNumbers(listOfNumbers);
     }
 
     private getUserDelimiter(numbers: string): string {
@@ -67,13 +59,6 @@ export class StringCalculator {
         const delimiter = listSeparatedByLineJump[0];
 
         return delimiter;
-    }
-
-    private getListOfNumbersWithNewDelimiter(numbers: string, delimiter: string): string[] {
-        const indexOfLineJump = numbers.indexOf("\n");
-        const numbersOnly = numbers.substring(indexOfLineJump + 1);
-        
-        return numbersOnly.split(delimiter);
     }
 
     private makeSumOfStringNumbers(stringNumbersOnList: string[]): number {   
@@ -94,5 +79,28 @@ export class StringCalculator {
             throw new Error("Negative numbers are not valid: " + negativeNumbers.join(","));
         }
         return result;
+    }
+
+
+
+    private isNumbersArgumentEmpty(numbers: string): boolean { 
+        return !numbers;
+    }
+
+    private convertStringToNumber(stringNumber: string): number {
+        return parseInt(stringNumber);
+    }
+
+    private doesNumbersIncludeLineJump(numbers: string): boolean {
+        return numbers.includes("\n");
+    }
+
+    private isUserSettingNewDelimiter(numbers: string): boolean {
+        return numbers.startsWith("//");
+    }
+
+
+    private deleteNewDelimiterMarkFromString(numbers: string): string {
+        return numbers.replace("//", "");
     }
 }
