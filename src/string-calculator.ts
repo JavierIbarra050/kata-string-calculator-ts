@@ -5,6 +5,11 @@ export class StringCalculator {
 
         if ( isNumbersEmpty ) { return 0; }
 
+        if(numbers.includes("\n")) {
+            return this.convertStringToNumber(numbers.split("\n")[0]) 
+                + this.convertStringToNumber(numbers.split("\n")[1]);
+        }
+
         if (this.doesNumbersIncludeComma(numbers)) {
 
             const listOfNumbers = numbers.split(",");
