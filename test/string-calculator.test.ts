@@ -60,17 +60,16 @@ describe("StringCalculator", () => {
     it("should return an error if there is a negative number", () => {
         const calculator = new StringCalculator();
 
-        expect(() => {
-            calculator.add("2,-7");
-        }).toThrow("Negative numbers are not valid: -7");
-    });
+        expect(
+            () => calculator.add("2,-7")
+        ).toThrow("Negative numbers are not valid: -7")
+    })
 
-
-    it("should return an error if there are many negative number", () => {
+    it("should return an error if there are negative numbers", () => {
         const calculator = new StringCalculator();
 
-        expect(() => {
-            calculator.add("2,-7,-5,-8");
-        }).toThrow("Negative numbers are not valid: -7,-5,-8");
-    });
+        expect(
+            () => calculator.add("2,-7,-5,-8")
+        ).toThrow("Negative numbers are not valid: -7,-5,-8")
+    })
 });

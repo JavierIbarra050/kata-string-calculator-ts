@@ -70,31 +70,24 @@ export class StringCalculator {
     }
 
     private getListOfNumbersWithNewDelimiter(numbers: string, delimiter: string): string[] {
-        numbers = this.deleteNewDelimiterMarkFromString(numbers);
-        numbers = numbers.replace(delimiter, "");
-        numbers = numbers.replace("\n", "");
+        const indexOfLineJump = numbers.indexOf("\n");
+        const numbersOnly = numbers.substring(indexOfLineJump + 1);
         
-        return numbers.split(delimiter);
+        return numbersOnly.split(delimiter);
     }
 
     private makeSumOfStringNumbers(stringNumbersOnList: string[]): number {   
         let result: number = 0;
-        const negativeNumbers: string[] = [];
 
         stringNumbersOnList.forEach(
             (number: string) => {
                 if (number.includes("-")) {
-                    negativeNumbers.push(number);
+                    throw new Error("Negative numbers are not valid: " + number);
                 }
-
+                
                 result = result + this.convertStringToNumber(number);
             }
         )
-
-        if (negativeNumbers.length > 0) {
-            const negativeNumbersString: string = negativeNumbers.join(",");
-            throw new Error("Negative numbers are not valid: " + negativeNumbersString);
-        }
 
         return result;
     }
