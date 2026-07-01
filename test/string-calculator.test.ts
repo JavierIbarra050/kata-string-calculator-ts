@@ -64,4 +64,13 @@ describe("StringCalculator", () => {
             calculator.add("2,-7");
         }).toThrow("Negative numbers are not valid: -7");
     });
+
+
+    it("should return an error if there are many negative number", () => {
+        const calculator = new StringCalculator();
+
+        expect(() => {
+            calculator.add("2,-7,-5,-8");
+        }).toThrow("Negative numbers are not valid: -7,-5,-8");
+    });
 });
