@@ -10,7 +10,8 @@ export class StringCalculator {
             
             const delimiter = this.getUserDelimiter(numbers);
 
-            return this.convertStringToNumber(numbers.split(delimiter)[2]);
+            return this.convertStringToNumber(numbers.split(delimiter)[1])
+                + this.convertStringToNumber(numbers.split(delimiter)[2]);
         }
 
 
