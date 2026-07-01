@@ -72,4 +72,12 @@ describe("StringCalculator", () => {
             () => calculator.add("2,-7,-5,-8")
         ).toThrow("Negative numbers are not valid: -7,-5,-8")
     })
+
+    it("should ignore numbers over 1000", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("2,1001,3");
+
+        expect(result).toBe(5);
+    })
 });
