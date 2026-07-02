@@ -16,36 +16,61 @@ export class StringCalculator {
 
 
     private turnNumbersDelimiterToCommas (numbers: string): string {
-        const delimiter = this.getDelimiter(numbers);
+        const delimiters: string[] = this.getDelimiters(numbers);
         
         numbers = this.sanitizeNewDelimiterString(numbers);
 
-        return numbers.replaceAll(delimiter, ",");
+        delimiters.forEach(
+            (delimiter: string) => {
+                numbers = numbers.replaceAll(delimiter, ",");
+            }
+        )
+
+        return numbers;
     }
 
-    private getDelimiter(numbers: string): string {
+    private getDelimiters(numbers: string): string[] {
         if (this.isUserSettingNewDelimiter(numbers)) {
-            return this.getUserDelimiter(numbers);
+            return this.getUserDelimiters(numbers);
         }
 
         if (this.doesNumbersIncludeLineJump(numbers)) {
-            return "\n";
+            return ["\n"];
         }            
 
-        return ",";
+        return [","];
     }
 
-    private getUserDelimiter(numbers: string): string {
+    private getUserDelimiters(numbers: string): string[] {
         numbers = this.deleteNewDelimiterMarkFromString(numbers);
 
-        numbers = numbers.replace("[", "");
-        numbers = numbers.replace("]", "");
+        if (this.isUserTryingToSetMoreThanOneDelimiter(numbers)) {
+            return this.getUserDelimitersWithMoreThanOneCharacter(numbers);
+        }        
 
+        return this.getUserDelimiterWithOneCharacter(numbers);
+    }
+
+    private getUserDelimiterWithOneCharacter(numbers: string): string[] {
         const listSeparatedByLineJump = numbers.split("\n");
         
-        const delimiter = listSeparatedByLineJump[0];
+        const delimiter: string[] = [];
+        delimiter.push(listSeparatedByLineJump[0]);
 
         return delimiter;
+    }
+
+    private getUserDelimitersWithMoreThanOneCharacter(numbers: string): string[] {
+        const listOfDelimiters: string[] = [];
+        const listOfRawDelimiters = numbers.split("]");
+
+
+        for(let i: number = 0; i < listOfRawDelimiters.length - 1; i++) {
+            const delimiter = listOfRawDelimiters[i].replace("[", "");
+            listOfDelimiters.push(delimiter);
+        }
+
+        return listOfDelimiters;
     }
 
     private sanitizeNewDelimiterString(numbers: string): string {
@@ -116,5 +141,9 @@ export class StringCalculator {
 
     private deleteNewDelimiterMarkFromString(numbers: string): string {
         return numbers.replace("//", "");
+    }
+
+    private isUserTryingToSetMoreThanOneDelimiter(numbers: string): boolean {
+        return numbers.includes("[");
     }
 }
