@@ -88,4 +88,12 @@ describe("StringCalculator", () => {
 
         expect(result).toBe(6);
     })
+
+    it("should return sum of numbers with many delimiters with more than one character long", () => {
+        const calculator = new StringCalculator();
+
+        const result = calculator.add("//[*][%]\n1*2%3");
+
+        expect(result).toBe(6);
+    })
 });

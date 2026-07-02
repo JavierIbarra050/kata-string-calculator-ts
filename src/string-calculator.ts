@@ -2,7 +2,7 @@ export class StringCalculator {
 
     private readonly IGNORE_NUMBERS_GREATER_THAN_THIS_NUMBER: number = 1000;
 
-    
+
     public add(numbers: string): number {
 
         if ( this.numbersIsEmpty(numbers) ) { return 0; }
@@ -37,6 +37,9 @@ export class StringCalculator {
 
     private getUserDelimiter(numbers: string): string {
         numbers = this.deleteNewDelimiterMarkFromString(numbers);
+
+        numbers = numbers.replace("[", "");
+        numbers = numbers.replace("]", "");
 
         const listSeparatedByLineJump = numbers.split("\n");
         
