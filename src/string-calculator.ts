@@ -15,6 +15,7 @@ export class StringCalculator {
     }
 
 
+    
     private turnNumbersDelimiterToCommas (numbers: string): string {
         const delimiters: string[] = this.getDelimiters(numbers);
         
